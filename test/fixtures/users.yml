@@ -1,0 +1,13 @@
+# Read about fixtures at http://ar.rubyonrails.org/classes/Fixtures.html
+
+test1: 
+    name: "Test 1"
+    email: "test1@arpameeting.com"
+    hashed_password: "5088e2ef29ff3ac8873c956cec67fc72efe05cf45c39c10fe68a26063241b41a"
+    salt: "8pgVpS7FZOg="
+    
+test2: 
+    name: "Test 2"
+    email: "test2@arpameeting.com"
+    hashed_password: "5088e2ef29ff3ac8873c956cec67fc72efe05cf45c39c10fe68a26063241b41a"
+    salt: "8pgVpS7FZOg="

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ArpaMeeting</title>
+  <link href='http://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
+  <link rel="shortcut icon" href="/favicon.ico" /> 
+  <%= stylesheet_link_tag :all %>
+  <%= javascript_include_tag :defaults %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+    <div id="content">
+        <p id="top">
+            <% if signed_in? %>
+                <strong>User: <%= current_user.email %></strong>
+            <% end %>
+        </p>
+        <div id="logo">
+            <h1><%= link_to 'ArpaMeeting', root_path %></h1>
+        </div>
+        <ul id="menu">
+            <% if signed_in? %>
+                <li><%= link_to 'My Rooms', rooms_path %></li>
+                <li><%= link_to 'New Room', new_room_path %></li>
+                <li><%= link_to 'Sign out', signout_path %></li>
+            <% else%>
+                <li><%= link_to 'Sign in', signin_path %></li>
+            <% end %>
+        </ul>
+        <div class="line"></div>
+        <% if flash[:error] %>
+        <div id="error" class="error"><%= flash[:error] %></div>
+        <% end %>
+        <% if flash[:notice] %>
+        <div id="notice" class="notice"><%= flash[:notice] %></div>
+        <% end %>
+        <%= yield %>
+    </div>
+</body>
+</html>

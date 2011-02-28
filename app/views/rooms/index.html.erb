@@ -1,0 +1,9 @@
+<div style="margin-bottom: 10px">
+    Number of rooms: <%= @rooms.count %> <br />
+</div>
+<div class="rooms">
+    <% @rooms.each do |@room| %>
+        <% @room.phonebrowser_service.update_status if !@room.phonebrowser_service.nil?%>
+        <%= render :partial => 'partial_room'%>
+    <% end %>
+</div>

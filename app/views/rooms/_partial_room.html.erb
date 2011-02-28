@@ -1,0 +1,29 @@
+<div class="room">
+    <h3>Room #<%= @room.id%></h3>
+    <div style="text-align: center">
+    <%= form_for @room do |room_form| %>
+    <div class="actions">
+        <%= room_form.hidden_field :start_now, {:value => "1"} %>
+        <%= room_form.submit "Start" %>
+    </div>
+    <% end %>
+    <%= link_to 'Edit', edit_room_path(@room) %> -
+    <%= link_to 'Delete', @room, :method => :delete %> -
+    <% if !@room.phonebrowser_service.nil? %>
+        <%=link_to 'Enter as listener', @room.phonebrowser_service.listener_uri%>
+    <% end %>
+    </div>
+    <% @room.participants.each do |participant| %>
+        <h4>Participant #<%=participant.id%></h4>
+        Name: <%= participant.name %> <br/>
+        Contact: <%= participant.contact %> <br/>
+        State: <%= participant.pb_call_state %> <br/>
+        Started: <%= participant.pb_call_started %> <br/>
+        Finished: <%= participant.pb_call_finished %> <br/>
+        <%= link_to 'Enter as participant', room_participant_path(@room, participant)%><br/>
+        <% if participant.contact != 'browser' %>
+            <%= link_to 'Output Audio', participant.pb_output_recording  %> - 
+            <%= link_to 'Input Audio', participant.pb_input_recording if participant.contact != 'browser'%>
+        <% end %>
+    <% end %>
+</div>

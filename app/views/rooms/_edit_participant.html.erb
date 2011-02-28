@@ -1,0 +1,21 @@
+<div class="participant">
+    <h2>Participant</h2>
+    <%= fields_for "room[participant_attributes][]", edit_participant do |participant_form| %>
+        <div class="field">
+            <%= participant_form.label :name %><br />
+            <%= participant_form.text_field :name %>
+        </div>
+        <div class="field">
+            <%= participant_form.label :phone %><br />
+            <%= participant_form.text_field :phone %>
+        </div>
+        <div class="field">
+            <%= participant_form.label :sip %><br />
+            <%= participant_form.text_field :sip %>
+        </div>
+        <div class="field">
+            <%= participant_form.label :browser %><br />
+            <%= participant_form.check_box :browser %>
+        </div>
+    <% end %>
+</div>

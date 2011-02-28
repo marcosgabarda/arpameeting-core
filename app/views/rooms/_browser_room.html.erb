@@ -1,0 +1,25 @@
+<div class="participant_input">
+    <h2>You are: <%=@participant.name%></h2>
+    <object id="listener"
+            codebase="http://fpdownload.macromedia.com/get/flashplayer/current/swflash.cab"> 
+        <embed src="<%= @participant.pb_input_output_flash %>"
+               width="320" 
+               height="240"
+               name="listener"
+               align="middle"
+               play="true"
+               loop="false"
+               quality="high"
+               allowScriptAccess="always"
+               type="application/x-shockwave-flash"
+               pluginspage="http://www.adobe.com/go/getflashplayer"> 
+        </embed>
+    </object>
+</div>
+<div class="other_participants">
+    <% @room.participants.each do |participant| %>
+        <% if participant != @participant %>
+            <h2><%=participant.name%></h2>
+        <% end %>
+    <% end %>
+</div>

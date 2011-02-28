@@ -1,0 +1,16 @@
+<h1>Edit room</h1>
+
+<%= form_for @room do |room_form| %>
+    
+    <div id="participants">
+    <%= render :partial => 'edit_participant', :collection => @room.participants %>
+    </div>
+    
+    <%= label_tag :start_now%>
+    <%= check_box_tag(:start_now) %>
+    
+    <div class="actions">
+        <%= room_form.submit "Update" %>
+    </div>
+
+<% end %>

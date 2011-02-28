@@ -1,0 +1,11 @@
+<h1>Create new room</h1>
+<br/>
+<%= form_for @room, :url => rooms_path do |room_form| %>
+    <div id="participants">
+    <%= render :partial => 'participant', :collection => @room.participants %>
+    </div>
+    <p><%= add_participant_link "+ add a participant" %></p>
+    <div class="actions">
+        <%= room_form.submit "Create" %>
+    </div>
+<% end %>

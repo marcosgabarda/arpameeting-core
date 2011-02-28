@@ -1,0 +1,30 @@
+<div class="participant" style="margin-bottom: 10px">
+    <h2>Participant</h2>
+    <%= fields_for "room[participant_attributes][]", participant do |participant_form| %>
+        <div class="services">
+        <strong>Services</strong><br />
+        <% @services.each do |service| %>
+            <%= participant_form.check_box :services, {:checked => service.name == 'phonebrowser', :disabled => true}%> <%= service.name %>
+        <% end %>
+        </div>
+        <div class="field">
+            <strong><%= participant_form.label :name %></strong><br />
+            <%= participant_form.text_field :name %>
+        </div>
+        <strong>Contact information</strong>
+        <p>Choose the media you will use the participant</p>
+        <div class="field">
+            <%= participant_form.label :phone %> <em>+{:international_code}{:phone_number}</em><br />
+            <%= participant_form.text_field :phone %>
+        </div>
+        <div class="field">
+            <%= participant_form.label :sip %> <em>{:user}@{:sip_server}</em><br />
+            <%= participant_form.text_field :sip %>
+        </div>
+        <div class="field">
+            <%= participant_form.label :browser %>
+            <%= participant_form.check_box :browser %>
+        </div>
+        <%= link_to_function "- remove participant", "$(this).up('.participant').remove()" %>
+    <% end %>
+</div>

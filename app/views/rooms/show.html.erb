@@ -1,0 +1,6 @@
+<h1>Room #<%=@room.id%></h1>
+<% if @participant.contact != "browser" %>
+    <%= render :partial => 'listener_room'%>
+<% elsif %>
+    <%= render :partial => 'browser_room'%>
+<% end %>
