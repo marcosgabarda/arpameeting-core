@@ -1,7 +1,7 @@
 Arpameeting::Application.routes.draw do
   get "sessions/new"
 
-  resources :users
+  resources :users, :only => [:show, :new, :create, :edit, :update]
   resources :sessions, :only => [:new, :create, :destroy]
  
   #get "home/index"

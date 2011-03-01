@@ -1,5 +1,28 @@
 class UsersController < ApplicationController
     
+    before_filter :check_signed_in, :only => [:update, :edit]
+    before_filter :check_same_user, :only => [:update, :edit]
+    
+    def check_same_user
+        user = User.find(params[:id])
+        if user != current_user
+            flash[:notice] = 'You can\'t edit a profile from other user.'
+            redirect_to root_path
+        end
+    end
+    
+    def show
+        @user = User.find(params[:id])
+    end
+    
+    def edit
+        @user = User.find(params[:id])
+    end
+    
+    def update
+        
+    end
+    
     def create
         @user = User.new(params[:user])
         if @user.save

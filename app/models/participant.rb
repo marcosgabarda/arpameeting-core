@@ -5,8 +5,18 @@ class Participant < ActiveRecord::Base
     attr_accessor :services
     
     def price 
-        return 0.0 if !phone.nil? and !phone.empty?
-        service = Service.find_by_name("phonebrowser")
+        rate = 0.0
+        # Phone price
+        if phone =~ /^\+346[0-9]+/ 
+            rate = room.phonebrowser_service.rate_mobile
+        # Mobile phone price
+        elsif phone =~ /^\+349[0-9]+/
+            rate = room.phonebrowser_service.rate
+        end
+        # TODO Parse international code and apply the corresponding 
+        # price.
+        duration = pb_call_finished - pb_call_started
+        return (rate/60) * duration 
     end
     
     def contact 
