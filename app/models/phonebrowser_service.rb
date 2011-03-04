@@ -36,7 +36,7 @@ class PhonebrowserService < ActiveRecord::Base
     Starts the phone browser service.
 =end
     def start
-        pb = PhonebrowserApi.new('http://arpamet2.parcien.uv.es', '5080')
+        pb = PhonebrowserApi.new(self.service.url, self.service.port.to_s)
         participants_array = []
         participants.all.each do |participant|
             if participant.contact =~ /^\+[0-9]+/
