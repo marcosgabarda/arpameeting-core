@@ -6,6 +6,8 @@ gem 'httparty'
 
 gem 'oauth-plugin', '>=0.4.0.pre1'
 
+gem 'activemerchant'
+
 gem 'rails', '3.0.4'
 
 # Bundle edge Rails instead:
