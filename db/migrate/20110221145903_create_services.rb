@@ -7,7 +7,7 @@ class CreateServices < ActiveRecord::Migration
       t.string :status
       t.timestamps
     end
-    Service.create({:name => "phonebrowser", :url => "http://arpamet2.parcien.uv.es", :port => 5080, :status => "available"})
+    Service.create({:name => "phonebrowser", :url => "http://coruscant.arpamet.com", :port => 5080, :status => "available"})
   end
 
   def self.down
