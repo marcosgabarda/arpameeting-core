@@ -8,10 +8,10 @@ h2 { font-size: 1.2em; }
 h3 { font-size: 1.2em; background: #5f7ab3 url(../images/bluebg.gif) repeat-x left bottom; padding: 6px 7px; color: #fff; font-weight: normal; margin: 0 0 15px;}
 h4 { margin: 0 0 15px; color: #555; font-weight: normal; font-size: 1.6em; font-weight: normal; }
 p { clear: both; line-height: 1.64em; margin: 0 0 15px; }
-input[type=text], input[type=password], input[type=email], input.text, input.title, textarea, select {background-color:#fff;border:1px solid #bbb;}
-input[type=text]:focus, input[type=password]:focus, input.text:focus, input.title:focus, textarea:focus, select:focus {border-color:#666;}
-input[type=text], input[type=password], input[type=email], input.text, input.title, textarea, select {margin:0.5em 0;}
-input[type=text], input[type=password], input[type=email], input.text, input.title {font-family: 'Nobile', arial, serif; padding:5px;}
+input[type=text], input[type=password], input[type=email], input[type=number], input.text, input.title, textarea, select {background-color:#fff;border:1px solid #bbb;}
+input[type=text]:focus, input[type=password]:focus, input[type=number]:focus, input.text:focus, input.title:focus, textarea:focus, select:focus {border-color:#666;}
+input[type=text], input[type=password], input[type=email], input[type=number], input.text, input.title, textarea, select {margin:0.5em 0;}
+input[type=text], input[type=password], input[type=email], input[type=number], input.text, input.title {font-family: 'Nobile', arial, serif; padding:5px;}
 input[type=checkbox], input[type=radio], input.checkbox, input.radio {position:relative;top:.25em;}
 button { font-family: 'Nobile', arial, serif;}
 a.button, button, input[type=submit] { margin: 0.7em 0.5em 0.7em 0; padding:5px 10px 5px 7px; border:1px solid #bbb; border-top:1px solid #bbb; border-left:1px solid #bbb; background-color:#ccc; font-family: 'Nobile', arial, serif; font-size:100%; line-height:130%; text-decoration:none; font-weight:bold; color:#444; cursor:pointer;}

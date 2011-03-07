@@ -13,7 +13,7 @@
         <p id="top">
             <% if signed_in? %>
                 <strong>User: <%= current_user.email %></strong> - 
-                <%= link_to 'Edit profile', edit_user_path(current_user) %>
+                <%= link_to 'Show profile', user_path(current_user) %>
             <% end %>
         </p>
         <div id="logo">

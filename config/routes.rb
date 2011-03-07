@@ -1,8 +1,19 @@
 Arpameeting::Application.routes.draw do
+  get "recharges/new"
+
+  get "recharges/create"
+
+  get "new/create"
+
+  get "orders/new"
+
   get "sessions/new"
 
   resources :users, :only => [:show, :new, :create, :edit, :update]
   resources :sessions, :only => [:new, :create, :destroy]
+ 
+  resources :orders, :only => [:new, :create]
+  resources :recharges, :only => [:new, :create]
  
   #get "home/index"
   resources :rooms
@@ -18,6 +29,8 @@ Arpameeting::Application.routes.draw do
   match 'signin'    => 'sessions#new'
   match 'sessions'  => redirect('signin')
   match 'signout'   => 'sessions#destroy'
+
+  match 'orders/new/express' => 'orders#express',:as => 'express_new_order'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
