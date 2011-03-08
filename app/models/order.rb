@@ -9,7 +9,8 @@ class Order < ActiveRecord::Base
             {
                 :ip => ip_address,
                 :token => express_token,
-                :payer_id => express_payer_id
+                :payer_id => express_payer_id,
+                :currency => "EUR"
             }
         )
         transactions.create!(:action => "purchase", :amount => price_in_cents, :response => response)

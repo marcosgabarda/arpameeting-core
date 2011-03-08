@@ -5,9 +5,12 @@ class OrdersController < ApplicationController
     def express
         @recharge = session[:current_recharge]
         response = EXPRESS_GATEWAY.setup_purchase( (@recharge.amount.to_f*100).to_i , # Price in cents.
-            :ip => request.remote_ip,
-            :return_url => new_order_url,
-            :cancel_return_url => new_recharge_url
+            {
+                :ip => request.remote_ip,
+                :return_url => new_order_url,
+                :cancel_return_url => new_recharge_url,
+                :currency => "EUR"
+            }
         )
         if response.token.nil?
             flash[:error] = "Error connecting with PayPal, please, try again later."
