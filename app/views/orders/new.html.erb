@@ -1,4 +1,10 @@
-<% if @order.express_token.blank? %>
-<% else %>
 <h1>Confirm order</h1>
+<%= form_for @order do |f| %>
+    <% if @order.express_token.blank? %>
+    <% else %>
+        <%= f.hidden_field :express_token %>
+        <p>Name: <%=h @order.first_name %> <%=h @order.last_name %></p>
+        <p>Credit: <%= @order.price_in_cents/100.0%> &euro;</p>
+    <% end %>
+    <p><%= f.submit "Complete Order" %></p>
 <% end %>

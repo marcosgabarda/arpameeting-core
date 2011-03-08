@@ -10,7 +10,8 @@ class User < ActiveRecord::Base
     attr_accessor :password, :password_confirmation
     
     validates :password, :presence     => true,
-                         :confirmation => true
+                         :confirmation => true,
+                         :on => :create
     #                     :length       => { :within => 6..40 }
     
     validates :email, :presence => true,
@@ -28,7 +29,15 @@ class User < ActiveRecord::Base
         hashed_password == Digest::SHA2.hexdigest(salt + submitted_password)
     end
     
-     def self.authenticate(email, submitted_password)
+    def credit=(credit)
+        self[:credit] = (credit*100).to_i
+    end
+    
+    def credit
+        (self[:credit].to_f)/100
+    end
+    
+    def self.authenticate(email, submitted_password)
         user = find_by_email(email)
         return nil  if user.nil?
         return user if user.has_password?(submitted_password)

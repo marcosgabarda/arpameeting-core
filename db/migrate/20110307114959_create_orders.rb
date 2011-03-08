@@ -1,7 +1,8 @@
 class CreateOrders < ActiveRecord::Migration
   def self.up
     create_table :orders do |t|
-      t.references :recharge_id
+      t.references :recharge
+      t.string :ip_address
       t.string :express_token
       t.string :express_payer_id
       

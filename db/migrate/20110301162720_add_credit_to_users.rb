@@ -1,6 +1,6 @@
 class AddCreditToUsers < ActiveRecord::Migration
   def self.up
-    add_column :users, :credit, :float, :default => 0.0
+    add_column :users, :credit, :integer, :default => 0.0
   end
 
   def self.down
