@@ -1,3 +1,6 @@
 *.sqlite3
 database.yml
 .project
+Gemfile.lock
+db/schema.rb
+tmp/pids/
