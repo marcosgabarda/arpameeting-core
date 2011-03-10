@@ -6,4 +6,12 @@ class Room < ActiveRecord::Base
     def start
         phonebrowser_service.start
     end
+    
+    def price
+        price = 0.0
+        participants.each do |participant|
+            price += participant.price
+        end
+        return price.round(2)
+    end
 end

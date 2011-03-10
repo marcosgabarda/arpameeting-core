@@ -12,6 +12,9 @@
     <% if !@room.phonebrowser_service.nil? %>
         <%=link_to 'Enter as listener', @room.phonebrowser_service.listener_uri%>
     <% end %>
+    <p>
+    Price: <%= @room.price %> &euro;
+    </p>
     </div>
     <% @room.participants.each do |participant| %>
         <h4>Participant #<%=participant.id%></h4>
@@ -20,6 +23,7 @@
         State: <%= participant.pb_call_state %> <br/>
         Started: <%= participant.pb_call_started %> <br/>
         Finished: <%= participant.pb_call_finished %> <br/>
+        
         <%= link_to 'Enter as participant', room_participant_path(@room, participant)%><br/>
         <% if participant.contact != 'browser' %>
             <%= link_to 'Output Audio', participant.pb_output_recording  %> - 
