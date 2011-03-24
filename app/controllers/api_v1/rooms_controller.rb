@@ -1,12 +1,12 @@
 class ApiV1::RoomsController < ApiV1::APIController
     
-    before_filter :check_api_signed_in, :only => [:index, :create, :new, :update, :edit, :destroy]
-    before_filter :check_owner, :only => [:update, :edit, :destroy]
+    before_filter :check_api_signed_in, :only => [:index, :show, :create, :new, :update, :edit, :destroy]
+    before_filter :check_owner, :only => [:index, :show, :update, :edit, :destroy]
 
     def check_owner
         room = Room.find(params[:id])
         if room.user != current_user
-            # TODO Show API permission error
+            api_error '401', {:message => 'You must be the owner of the room to perform this action.'}
         end
     end
     

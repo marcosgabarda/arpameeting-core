@@ -30,6 +30,18 @@ class ApiV1::APIController < ApplicationController
         end
     end
   
+    def api_error(status_code, opts={})
+        errors = {}
+        errors[:type] = opts[:type] if opts[:type]
+        errors[:message] = opts[:message] if opts[:message]
+        respond_to do |format|
+            format.xml  { render :xml  => {:errors => errors}.to_xml, :status => status_code }
+            format.json { render :json => {:errors => errors}.to_json, :status => status_code }
+            #format.js { render :json => {:errors => errors}.to_json, :status => status_code, :callback => params[:callback] }
+        end
+    end
+  
+  
   # BEGIN Code from Teambox
   
   def api_status(status)
@@ -76,16 +88,6 @@ class ApiV1::APIController < ApplicationController
       end
     else
       objects
-    end
-  end
-  
-  def api_error(status_code, opts={})
-    errors = {}
-    errors[:type] = opts[:type] if opts[:type]
-    errors[:message] = opts[:message] if opts[:message]
-    respond_to do |f|
-      f.json { render :json => {:errors => errors}.to_json, :status => status_code }
-      f.js { render :json => {:errors => errors}.to_json, :status => status_code, :callback => params[:callback] }
     end
   end
   
