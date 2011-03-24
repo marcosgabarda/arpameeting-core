@@ -20,14 +20,15 @@ class ApiV1::APIController < ApplicationController
   #format.xml { render :xml => @room.to_xml(:include => [:phonebrowser_service, :participants]) } #.to_xml(:include => :phonebrowser_service)
   #format.json {render :json => @room.to_json(:include => [:phonebrowser_service, :participants]) }
   
-  def api_respond(object, options={})
-    respond_to do |format|
-      format.xml  { render :xml  => object.to_xml(options)  }
-      format.json { render :json => object.to_json(options) }
-      #format.json { render :json => api_wrap(object, options).to_json }
-      #format.js   { render :json => api_wrap(object, options).to_json, :callback => params[:callback] }
+    def api_respond(object, options={})
+        respond_to do |format|
+            format.html { render :xml  => object.to_xml(options)  }
+            format.xml  { render :xml  => object.to_xml(options)  }
+            format.json { render :json => object.to_json(options) }
+            #format.json { render :json => api_wrap(object, options).to_json }
+            #format.js   { render :json => api_wrap(object, options).to_json, :callback => params[:callback] }
+        end
     end
-  end
   
   # BEGIN Code from Teambox
   
