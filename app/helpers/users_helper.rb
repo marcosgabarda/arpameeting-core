@@ -1,4 +1,9 @@
 module UsersHelper
+
+    def check_sing_up_enabled
+        Arpameeting::Application::ENABLED_USER_SIGN_UP
+    end
+
 =begin
     
 =end

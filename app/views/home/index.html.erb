@@ -3,6 +3,8 @@
         </div>
         <div class="third">&nbsp;</div>
         <div class="third" style="text-align: center; font-size: 3em;">
-            <%= link_to 'Sign up', signup_path if !signed_in? %>
+            <% if check_sing_up_enabled %>
+                <%= link_to 'Sign up', signup_path if !signed_in? %>
+            <% end %>
         </div>
         <div class="third last">&nbsp;</div>
