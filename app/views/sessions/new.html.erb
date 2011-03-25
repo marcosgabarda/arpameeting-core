@@ -13,5 +13,7 @@
     <%= f.submit "Sign in" %>
   </div>
 <% end %>
-
-<p>New user? <%= link_to "Sign up now!", signup_path %></p>
+<br />
+<% if check_sing_up_enabled %>
+    <p>New user? <%= link_to "Sign up now!", signup_path %></p>
+<% end %>

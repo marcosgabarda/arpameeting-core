@@ -1,5 +1,6 @@
 class UsersController < ApplicationController
     
+    before_filter :check_sing_up_enabled, :only => [:new, :create]
     before_filter :check_signed_in, :only => [:update, :edit]
     before_filter :check_same_user, :only => [:update, :edit]
     
