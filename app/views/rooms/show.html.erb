@@ -1,6 +1,26 @@
+<script type="text/javascript">
+    AMVideo.net_group_name = '<%= @room.video_service.group_name %>';
+</script>
 <h1>Room #<%=@room.id%></h1>
 <% if @participant.contact != "browser" %>
     <%= render :partial => 'listener_room'%>
 <% elsif %>
     <%= render :partial => 'browser_room'%>
 <% end %>
+<script type="text/javascript">
+    AMVideo.output.peers = [];
+</script>
+<div class="other_participants">
+    <% @room.participants.each do |participant| %>
+        <% if participant != @participant %>
+            <div id="participant_<%= @participant.id %>">
+                <h2><%=participant.name%></h2>
+                <div id="participant_<%= participant.id %>_video"></div>
+                <script type="text/javascript">
+                AMVideo.output.peers.push({ stream : "peer<%= participant.id %>", container : "participant_<%= participant.id %>_video"});
+                </script>
+            </div>
+        <% end %>
+    <% end %>
+</div>
+<script type="text/javascript">AMVideo.createInputSWF();</script>

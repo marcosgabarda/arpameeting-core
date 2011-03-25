@@ -1,25 +1,12 @@
+<% require 'cgi' %>
 <div class="participant_input">
     <h2>You are: <%=@participant.name%></h2>
-    <object id="listener"
-            codebase="http://fpdownload.macromedia.com/get/flashplayer/current/swflash.cab"> 
-        <embed src="<%= @participant.pb_input_output_flash %>"
-               width="320" 
-               height="240"
-               name="listener"
-               align="middle"
-               play="true"
-               loop="false"
-               quality="high"
-               allowScriptAccess="always"
-               type="application/x-shockwave-flash"
-               pluginspage="http://www.adobe.com/go/getflashplayer"> 
-        </embed>
-    </object>
-</div>
-<div class="other_participants">
-    <% @room.participants.each do |participant| %>
-        <% if participant != @participant %>
-            <h2><%=participant.name%></h2>
-        <% end %>
-    <% end %>
+    <div id="input_audio_container"></div>
+    <div id="input_video_container"></div>
+    <script type="text/javascript">
+        var url_audio_input = "<%= raw(@participant.pb_input_output_flash) %>";
+        swfobject.embedSWF(url_audio_input, 'input_audio_container', 320, 240, '10.0.0');
+        AMVideo.input.stream = "peer<%=@participant.id%>";
+        AMVideo.input.container = "input_video_container";
+    </script>
 </div>

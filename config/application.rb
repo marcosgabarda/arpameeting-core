@@ -9,7 +9,7 @@ Bundler.require(:default, Rails.env) if defined?(Bundler)
 module Arpameeting
   class Application < Rails::Application
     
-    ENABLED_USER_SIGN_UP = false
+    ENABLED_USER_SIGN_UP = true
     
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers

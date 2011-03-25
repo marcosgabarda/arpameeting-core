@@ -14,7 +14,8 @@ class User < ActiveRecord::Base
                          :on => :create
     #                     :length       => { :within => 6..40 }
     
-    validates :email, :presence => true,
+    validates :email, :uniqueness => true,
+                      :presence => true,
                       :format => { :with => /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i }
     
     #validates_uniqueness_of :email

@@ -44,6 +44,7 @@ class RoomsController < ApplicationController
                 @room.participants << Participant.create(part)
             end
             @room.phonebrowser_service = PhonebrowserService.create(:room => @room)
+            @room.video_service = VideoService.create(:room => @room)
             @room.save
             redirect_to rooms_path
             
@@ -65,6 +66,7 @@ class RoomsController < ApplicationController
                 @room.participants << p
             end
             @room.phonebrowser_service = PhonebrowserService.create(:room => @room)
+            @room.video_service = VideoService.create(:room => @room)
             @room.save
             if params[:room][:start_now] and !params[:room][:start_now].nil? and params[:room][:start_now] == "1"
                 @room.start

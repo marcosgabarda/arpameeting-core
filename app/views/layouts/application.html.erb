@@ -5,7 +5,8 @@
   <link href='http://fonts.googleapis.com/css?family=Nobile:regular,italic,bold,bolditalic' rel='stylesheet' type='text/css'>
   <link rel="shortcut icon" href="/favicon.ico" /> 
   <%= stylesheet_link_tag :all %>
-  <%= javascript_include_tag :defaults %>
+  <%= javascript_include_tag :all %>
+  <%= javascript_include_tag Service.find_by_name('video').url + '/amvideo.js', :cache => false %>
   <%= csrf_meta_tag %>
 </head>
 <body>

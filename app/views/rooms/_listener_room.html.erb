@@ -1,27 +1,10 @@
 <% if !@room.phonebrowser_service.listener_uri.nil? %>
 <div class="listener_participant">
-<h2>Audio</h2>
-<object id="listener"
-        codebase="http://fpdownload.macromedia.com/get/flashplayer/current/swflash.cab"> 
-    <embed src="<%= @room.phonebrowser_service.listener_uri %>"
-           width="320" 
-           height="240"
-           name="listener"
-           align="middle"
-           play="true"
-           loop="false"
-           quality="high"
-           allowScriptAccess="always"
-           type="application/x-shockwave-flash"
-           pluginspage="http://www.adobe.com/go/getflashplayer"> 
-    </embed>
-</object>
+    <h2>Audio</h2>
+    <script type="text/javascript">
+        var url_audio_listener = '<%= @room.phonebrowser_service.listener_uri %>'
+        swfobject.embedSWF(url_audio_listener, 'listener_container', 320, 240, '10.0.0');
+    </script>
+    <div id="listener_container"></div>
 </div>
 <% end %>
-<div class="other_participants">
-    <% @room.participants.each do |participant| %>
-        <% if participant != @participant %>
-            <h2><%=participant.name%></h2>
-        <% end %>
-    <% end %>
-</div>
