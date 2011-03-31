@@ -4,7 +4,9 @@
         <div class="services">
         <strong>Services</strong><br />
         <% @services.each do |service| %>
-            <%= participant_form.check_box :services, {:checked => service.name == 'phonebrowser', :disabled => true}%> <%= service.name %>
+            <%= participant_form.check_box :services, 
+            {:checked => service.name == 'phonebrowser', :disabled => service.name == 'phonebrowser'}%>
+            <%= service.name %>
         <% end %>
         </div>
         <div class="field">

@@ -40,11 +40,12 @@ class RoomsController < ApplicationController
         
         # Creation from web form.
         if params[:room][:participant_attributes]
-            params[:room][:participant_attributes].each do |part|
-                @room.participants << Participant.create(part)
-            end
             @room.phonebrowser_service = PhonebrowserService.create(:room => @room)
             @room.video_service = VideoService.create(:room => @room)
+            params[:room][:participant_attributes].each do |part|
+                p = Participant.create(part)
+                @room.participants << p
+            end
             @room.save
             redirect_to rooms_path
             
