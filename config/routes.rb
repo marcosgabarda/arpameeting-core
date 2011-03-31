@@ -32,6 +32,12 @@ Arpameeting::Application.routes.draw do
 
   match 'orders/new/express' => 'orders#express',:as => 'express_new_order'
 
+  # API Routing
+  namespace :api_v1, :path => 'api/1' do
+    resources :rooms
+    resources :services, :only => [:index]
+  end
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
