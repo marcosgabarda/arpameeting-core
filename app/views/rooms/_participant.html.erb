@@ -5,7 +5,7 @@
         <strong>Services</strong><br />
         <% @services.each do |service| %>
             <%= participant_form.check_box :services, 
-            {:checked => service.name == 'phonebrowser', :disabled => service.name == 'phonebrowser'}%>
+            {:checked => service.name == 'phonebrowser', :disabled => true}%>
             <%= service.name %>
         <% end %>
         </div>
