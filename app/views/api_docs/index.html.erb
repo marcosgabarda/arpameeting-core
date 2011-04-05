@@ -1,0 +1,185 @@
+<h2>Basis</h2>
+<p>
+    The ArpaMeeting API will allow you to create conference room from your 
+    applications. The API is RESTful based and allows XML and JSON data 
+    encoding. For authentication the API supports HTTP Basic Authentication, 
+    but we will support OAuth soon.
+</p>
+<p>
+    The base url to perform all requests is:
+</p>
+<p><strong><%= @base_url %></strong></p>
+<p>
+    Resources
+    <ul>
+        <li><a href="#">/services</a></li>
+        <li><a href="#">/rooms</a></li>
+    </ul>
+</p>
+<h3>CURL Example</h3>
+<pre>
+<code>
+curl -u username:password <%= @base_url %>/rooms.xml
+</code>
+</pre>
+<p>Response:</p>
+<pre>
+<code>
+<%= show_code '<?xml version="1.0" encoding="UTF-8"?>
+<rooms type="array">
+  <room>
+    <created-at type="datetime">2011-03-31T15:43:16Z</created-at>
+    <phonebrowser-service-id type="integer" nil="true"></phonebrowser-service-id>
+    <updated-at type="datetime">2011-03-31T15:43:16Z</updated-at>
+    <id type="integer">5</id>
+    <user-id type="integer">2</user-id>
+  </room>
+</rooms>' %>
+</code>
+</pre>
+<h2>Rooms</h2>
+<h3>GET</h3>
+<p>
+    To obtain a list of rooms created by the signed in user.
+</p>
+<pre>
+<code>
+GET <%= @base_url %>/rooms.{xml|json}
+</code>
+</pre>
+<p>
+Example of response:
+</p>
+<pre>
+<code>
+<%= show_code '<?xml version="1.0" encoding="UTF-8"?>
+<rooms type="array">
+  <room>
+    <created-at type="datetime">2011-03-31T15:43:16Z</created-at>
+    <phonebrowser-service-id type="integer" nil="true"></phonebrowser-service-id>
+    <updated-at type="datetime">2011-03-31T15:43:16Z</updated-at>
+    <id type="integer">5</id>
+    <user-id type="integer">2</user-id>
+  </room>
+</rooms>' %>
+</code>
+</pre>
+<p>
+To obtain information about a specific room:
+</p>
+<pre>
+<code>
+GET <%= @base_url %>/rooms/{:id}.{xml|json}
+</code>
+</pre>
+<p>
+    Example of response:
+</p>
+<pre>
+<code>
+<%= show_code '<?xml version="1.0" encoding="UTF-8"?>
+<room>
+  <created-at type="datetime">2011-03-31T15:43:16Z</created-at>
+  <phonebrowser-service-id type="integer" nil="true"></phonebrowser-service-id>
+  <updated-at type="datetime">2011-03-31T15:43:16Z</updated-at>
+  <id type="integer">5</id>
+  <user-id type="integer">2</user-id>
+  <phonebrowser-service>
+    <room-id type="integer">5</room-id>
+    <created-at type="datetime">2011-03-31T15:43:16Z</created-at>
+    <rate-mobile type="float">0.129</rate-mobile>
+    <updated-at type="datetime">2011-03-31T15:43:26Z</updated-at>
+    <rate type="float">0.025</rate>
+    <id type="integer">5</id>
+    <listener-uri>http://...</listener-uri>
+    <phonebrowser-number>qtuv07vclda2920d89q0oialml</phonebrowser-number>
+    <service-id type="integer">1</service-id>
+  </phonebrowser-service>
+  <participants type="array">
+    <participant>
+      <name>Marcos</name>
+      <room-id type="integer">5</room-id>
+      <created-at type="datetime">2011-03-31T15:43:16Z</created-at>
+      <phonebrowser-service-id type="integer" nil="true"></phonebrowser-service-id>
+      <pb-input-output-flash>http://...</pb-input-output-flash>
+      <pb-output-recording nil="true"></pb-output-recording>
+      <video-service-id type="integer" nil="true"></video-service-id>
+      <updated-at type="datetime">2011-03-31T15:43:26Z</updated-at>
+      <pb-call-started type="datetime" nil="true"></pb-call-started>
+      <pb-input-recording nil="true"></pb-input-recording>
+      <sip></sip>
+      <id type="integer">4</id>
+      <pb-call-finished type="datetime" nil="true"></pb-call-finished>
+      <phone></phone>
+      <browser type="boolean">false</browser>
+      <pb-call-state>ilde</pb-call-state>
+    </participant>
+    <participant>
+      <name>Adolfo</name>
+      <room-id type="integer">5</room-id>
+      <created-at type="datetime">2011-03-31T15:43:16Z</created-at>
+      <phonebrowser-service-id type="integer" nil="true"></phonebrowser-service-id>
+      <pb-input-output-flash>http://...</pb-input-output-flash>
+      <pb-output-recording nil="true"></pb-output-recording>
+      <video-service-id type="integer" nil="true"></video-service-id>
+      <updated-at type="datetime">2011-03-31T15:43:26Z</updated-at>
+      <pb-call-started type="datetime" nil="true"></pb-call-started>
+      <pb-input-recording nil="true"></pb-input-recording>
+      <sip></sip>
+      <id type="integer">5</id>
+      <pb-call-finished type="datetime" nil="true"></pb-call-finished>
+      <phone></phone>
+      <browser type="boolean">false</browser>
+      <pb-call-state>ilde</pb-call-state>
+    </participant>
+  </participants>
+</room>' %>
+</code>
+</pre>
+<p>
+    Notice 
+</p>
+<br />
+<br />
+<h3>POST</h3>
+Create a new conference room:
+<pre>
+<code>
+POST <%= @base_url %>/rooms.{xml|json}
+Content-type:application/xml
+<%= show_code '<room>
+    <participant>
+        <name>Hector</name>
+        <browser>1</browser>
+    </participant>
+    <participant>
+        <name>Marcos</name>
+        <phone>+34...</phone>
+    </participant>
+    <start_now>1</start_now>
+</room>' %>
+</code>
+</pre>
+<p>
+    By using <strong>&lt;start_now&gt;1&lt;/start_now&gt;</strong> ArpaMeeting will call
+    at the creation moment to all the participants with phone or with SIP 
+    account. To call later, just put this otion to <strong>0</strong>, and perform an
+    update action setting start_now to 1.
+</p>
+<p>Example of response:</p>
+<pre>
+<code>
+<%= show_code '<?xml version="1.0" encoding="UTF-8"?>
+<room>
+    ...{same as GET}
+</room>' %>
+</code>
+</pre>
+<p>
+    When you create a room, you have the responsability of giving the correct 
+    room access link to each participant. To obtain these URLs we only have to 
+    consider the following construction:
+</p>
+<pre>
+<strong>http://<%= @root %>/rooms/{:room_id}/participants/{:participant_id}</strong>
+</pre>

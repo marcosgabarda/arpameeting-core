@@ -24,6 +24,7 @@
             <% if signed_in? %>
                 <li><%= link_to 'My Rooms', rooms_path %></li>
                 <li><%= link_to 'New Room', new_room_path %></li>
+                <li><%= link_to 'API', api_docs_path %></li>
                 <li><%= link_to 'Sign out', signout_path %></li>
             <% else%>
                 <li><%= link_to 'Sign in', signin_path %></li>
