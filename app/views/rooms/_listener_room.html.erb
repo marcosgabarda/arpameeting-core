@@ -1,10 +1,13 @@
 <% if !@room.phonebrowser_service.listener_uri.nil? %>
 <div class="listener_participant">
     <h2>Audio</h2>
+    <div id="listener_container"></div>
+    <div id="input_video_container"></div>
     <script type="text/javascript">
         var url_audio_listener = '<%= @room.phonebrowser_service.listener_uri %>'
         swfobject.embedSWF(url_audio_listener, 'listener_container', 320, 240, '10.0.0');
+        AMVideo.input.stream = "peer<%=@participant.id%>";
+        AMVideo.input.container = "input_video_container";
     </script>
-    <div id="listener_container"></div>
 </div>
 <% end %>
