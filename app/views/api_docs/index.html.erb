@@ -12,8 +12,8 @@
 <p>
     Resources
     <ul>
-        <li><a href="#">/services</a></li>
-        <li><a href="#">/rooms</a></li>
+        <li><a href="#services">/services</a></li>
+        <li><a href="#rooms">/rooms</a></li>
     </ul>
 </p>
 <h3>CURL Example</h3>
@@ -37,7 +37,42 @@ curl -u username:password <%= @base_url %>/rooms.xml
 </rooms>' %>
 </code>
 </pre>
-<h2>Rooms</h2>
+<a name="services"><h2>Services</h2></a>
+<h3>GET</h3>
+<p>
+    The <i>services</i> resource list all available services in ArpaMeeting to 
+    build a conference room.
+</p>
+<pre>
+<code>
+GET <%= @base_url %>/services.{xml|json}
+</code>
+</pre>
+Example of response:
+<pre>
+<code><%= show_code '<services type="array">
+  <service>
+    <name>phonebrowser</name>
+    <created-at type="datetime">2011-03-30T10:05:14Z</created-at>
+    <port type="integer">5080</port>
+    <updated-at type="datetime">2011-03-30T10:05:14Z</updated-at>
+    <url>http://coruscant.arpamet.com</url>
+    <id type="integer">1</id>
+    <status>available</status>
+  </service>
+  <service>
+    <name>video</name>
+    <created-at type="datetime">2011-03-30T10:13:51Z</created-at>
+    <port type="integer">80</port>
+    <updated-at type="datetime">2011-03-30T10:13:51Z</updated-at>
+    <url>http://arpameeting-video.arpamet.com</url>
+    <id type="integer">2</id>
+    <status>available</status>
+  </service>
+</services>
+' %></code>
+</pre>
+<a name="rooms"><h2>Rooms</h2></a>
 <h3>GET</h3>
 <p>
     To obtain a list of rooms created by the signed in user.
@@ -137,7 +172,17 @@ GET <%= @base_url %>/rooms/{:id}.{xml|json}
 </code>
 </pre>
 <p>
-    Notice 
+    Some important attributes:
+    <ul>
+        <li><strong>listener-uri</strong>: Address to the SWF object to 
+            listent the audio of the room.</li>
+        <li><strong>pb-output-recording</strong>: Record of the output audio 
+            of the participant.</li>
+        <li><strong>pb-input-recording</strong>: Record of the input audio of
+            the participant.</li>
+        <li><strong>pb-call-state</strong>: State of the call. The options are: 
+            ilde, dialing, hangup, success, noanswer and busy</li>
+    </ul>
 </p>
 <br />
 <br />
@@ -182,4 +227,19 @@ Content-type:application/xml
 </p>
 <pre>
 <strong>http://<%= @root %>/rooms/{:room_id}/participants/{:participant_id}</strong>
+</pre>
+<h3>PUT</h3>
+<p>
+    You can update a conference room making a PUT request. In the following 
+    example, the <i>start_now</i> attribute is set to 1 to start calling all phones 
+    and SIP accounts in the room.
+</p>
+<pre>
+<code>
+PUT <%= @base_url %>/rooms/{:id}.{xml|json}
+Content-type:application/xml
+<%= show_code '<room>
+    <start_now>1</start_now>
+</room>' %>
+</code>
 </pre>
