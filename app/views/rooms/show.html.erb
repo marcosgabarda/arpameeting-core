@@ -2,6 +2,16 @@
     AMVideo.net_group_name = '<%= @room.video_service.group_name %>';
 </script>
 <h1>Room #<%=@room.id%></h1>
+<% if @participant.video_service_id.nil? %>
+    <button id="add_video_button">Activate video</button>
+    <script type="text/javascript">
+        $('add_video_button').observe ('click', function ()
+        {
+            AMVideo.createInputSWF();
+            $('add_video_button').hide();
+        });
+    </script>
+<% end %>
 <% if @participant.contact != "browser" %>
     <%= render :partial => 'listener_room'%>
 <% elsif %>
