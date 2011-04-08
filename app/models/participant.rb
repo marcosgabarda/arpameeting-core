@@ -2,7 +2,7 @@ class Participant < ActiveRecord::Base
     belongs_to :room
     validates :name, :presence => true
     
-    attr_accessor :services
+    #attr_accessor :services
     
     def price 
         rate = 0.0

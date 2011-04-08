@@ -29,7 +29,6 @@ class ApiV1::RoomsController < ApiV1::APIController
 
     def create
         @room = Room.create(:user => current_user)
-    
         participants_array = []
         if params[:room][:participant].class == Array
             participants_array = params[:room][:participant]
@@ -42,10 +41,13 @@ class ApiV1::RoomsController < ApiV1::APIController
             p.phone = part[:phone]
             p.sip = part[:sip]
             p.browser = part[:browser]
+            p.phonebrowser_service_id = Service.find_by_name('phonebrowser').id
+            p.video_service_id = Service.find_by_name('video').id
             p.save
             @room.participants << p
         end
         @room.phonebrowser_service = PhonebrowserService.create(:room => @room)
+        @room.video_service = VideoService.create(:room => @room)
         @room.save
         if params[:room][:start_now] and !params[:room][:start_now].nil? and params[:room][:start_now] == "1"
             @room.start

@@ -23,4 +23,6 @@
         <% end %>
     <% end %>
 </div>
-<script type="text/javascript">AMVideo.createInputSWF();</script>
+<% if !@participant.video_service_id.nil? %>
+    <script type="text/javascript">AMVideo.createInputSWF();</script>
+<% end %>

@@ -20,6 +20,7 @@
         <h4>Participant #<%=participant.id%></h4>
         Name: <%= participant.name %> <br/>
         Contact: <%= participant.contact %> <br/>
+        Video: <%= (!participant.video_service_id.nil?).to_s %> <br/>
         State: <%= participant.pb_call_state %> <br/>
         Started: <%= participant.pb_call_started %> <br/>
         Finished: <%= participant.pb_call_finished %> <br/>

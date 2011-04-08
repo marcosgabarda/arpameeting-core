@@ -43,7 +43,18 @@ class RoomsController < ApplicationController
             @room.phonebrowser_service = PhonebrowserService.create(:room => @room)
             @room.video_service = VideoService.create(:room => @room)
             params[:room][:participant_attributes].each do |part|
-                p = Participant.create(part)
+                p = Participant.new
+                if part[:phonebrowser_service] == '1'
+                    p.phonebrowser_service_id = Service.find_by_name('phonebrowser').id
+                end
+                if part[:video_service_id] == '1'
+                    p.video_service_id = Service.find_by_name('video').id
+                end
+                p.name = part[:name]
+                p.phone = part[:phone]
+                p.sip = part[:sip]
+                p.browser = part[:browser]
+                p.save
                 @room.participants << p
             end
             @room.save
