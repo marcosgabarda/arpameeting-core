@@ -14,6 +14,16 @@ class RoomsController < ApplicationController
         end
     end
     
+    def paid (room)
+        if room.price > 0.0 && !room.paided?
+            room.paided = true
+            user = room.user
+            user.credit = user.credit - room.price
+            user.save
+            room.save 
+        end
+    end
+    
     def start (room)
         user = room.user
         paid_needed = false
@@ -23,7 +33,7 @@ class RoomsController < ApplicationController
         if paid_needed and user.credit <= 0.0
             flash[:error] = 'You don\'t have enough money to start a room with phones.'
         else
-            flash[:success] = "Starting room #{room.id}..."
+            flash[:success] = "Room ##{room.id} started."
             room.start
         end
     end
@@ -33,6 +43,9 @@ class RoomsController < ApplicationController
             redirect_to '/signin'
         else
             @rooms = current_user.rooms
+            @rooms.each do |room|
+                paid room
+            end
             respond_to do |format|
                 format.html
                 format.xml {render :xml => @rooms}
