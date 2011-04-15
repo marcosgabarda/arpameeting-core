@@ -32,4 +32,9 @@ class Participant < ActiveRecord::Base
             return "browser"
         end
     end
+    
+    def needs_paid?
+        return (!phone.nil? and !phone.empty?)
+    end
+    
 end

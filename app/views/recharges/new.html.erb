@@ -1,12 +1,17 @@
 <h1>New Recharge</h1>
+<p>
+    If you want add phones to your conference rooms, you need to add 
+    funds to your user account.
+</p>
 <%= form_for @recharge do |f|%>
     <div class="field">
         <%= f.label :amount %>: 
         <%= f.text_field :amount %> &euro;
     </div>
-    <div class="field">
-        <h2>Payment method</h2>
-        <%= radio_button_tag 'recharge[method]', 'express', true %><%= image_tag("https://www.paypal.com/es_XC/i/logo/PayPal_mark_37x23.gif", {:style => "margin-left:7px;"}) %>
+    <h2>Payment method</h2>
+    <div class="field" style="margin-top: 10px;">
+        <%= radio_button_tag 'recharge[method]', 'express', true %>
+        <%= image_tag("https://www.paypal.com/es_XC/i/logo/PayPal_mark_37x23.gif", {:style => "margin-left:7px;vertical-align:middle;"}) %>
     </div>
     <div class="actions">
         <%= f.submit "New recharge" %>

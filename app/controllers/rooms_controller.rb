@@ -14,6 +14,20 @@ class RoomsController < ApplicationController
         end
     end
     
+    def start (room)
+        user = room.user
+        paid_needed = false
+        room.participants.each do |participant| 
+            paid_needed = (paid_needed or participant.needs_paid?)
+        end
+        if paid_needed and user.credit <= 0.0
+            flash[:error] = 'You don\'t have enough money to start a room with phones.'
+        else
+            flash[:success] = "Starting room #{room.id}..."
+            room.start
+        end
+    end
+    
     def index
         if !signed_in?
             redirect_to '/signin'
@@ -32,9 +46,6 @@ class RoomsController < ApplicationController
         @participant = Participant.find(params[:id_participant])
     end
 
-=begin
-    TODO Add user restriction.
-=end
     def create
         @room = Room.create(:user => current_user)
         
@@ -81,7 +92,7 @@ class RoomsController < ApplicationController
             @room.video_service = VideoService.create(:room => @room)
             @room.save
             if params[:room][:start_now] and !params[:room][:start_now].nil? and params[:room][:start_now] == "1"
-                @room.start
+                start @room
             end
             # @ltest.to_xml(:include => :sub_tests) 
             respond_to do |format|
@@ -110,7 +121,7 @@ class RoomsController < ApplicationController
             end
         else
             if params[:room][:start_now] == "1"
-                @room.start if !@room.nil?
+                start(@room) if !@room.nil?
             end
         end
         respond_to do |format|
