@@ -1,10 +1,15 @@
-        <div id="pitch">
-            <h1>Conferences service with phones, Flash and much more.</h1>
+    <div id="featured-warp" class="clearfix">
+        <div id="featured" class="container_12">
+            <div class="grid_6">
+                <h1>Conferences room service with phones, Flash, video and 
+                    much more.</h1>
+            </div>
         </div>
-        <div class="third">&nbsp;</div>
-        <div class="third" style="text-align: center; font-size: 3em;">
+    </div>
+    <div id="content-warp" class="clearfix">
+        <div id="content" class="container_12" style="text-align: center; padding-top: 30px;font-size:32px;">
             <% if check_sing_up_enabled %>
-                <%= link_to 'Sign up', signup_path if !signed_in? %>
+                <%= link_to 'Sign up', signup_path, :class => "button blue" if !signed_in? %>
             <% end %>
         </div>
-        <div class="third last">&nbsp;</div>
+    </div>

@@ -23,20 +23,16 @@
                     <%= link_to 'Sign in', signin_path, :class => "button green" %>
                 <% else %>
                     <div id="menunav">
-                        <%= link_to 'My Rooms', rooms_path, :class => "button" %>
-                        <%= link_to 'New Room', new_room_path, :class => "button" %>
-                        <%= link_to 'API', api_docs_path, :class => "button" %>
-                        <%= link_to 'Sign out', signout_path, :class => "button blue" %>
+                    <%= link_to 'My Rooms', rooms_path, :class => "button" %>
+                    <%= link_to 'New Room', new_room_path, :class => "button" %>
+                    <%= link_to 'API', api_docs_path, :class => "button" %>
+                    <%= link_to 'Sign out', signout_path, :class => "button blue" %>
                     </div>
                 <% end %>
             </div>
         </div>
     </div>
-    <div id="content-warp" class="clearfix">
-        <div id="content" class="container_12">
-            <%= yield %>
-        </div>
-    </div>
+    <%= yield %>
     
     <!-- 
     <div id="content" class="container_12">

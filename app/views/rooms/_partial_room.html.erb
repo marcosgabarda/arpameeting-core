@@ -1,10 +1,10 @@
-<div class="room">
-    <h3>Room #<%= @room.id%></h3>
+<div class="grid_12">
+    <h2>Room #<%= @room.id%></h2>
     <div style="text-align: center">
     <%= form_for @room do |room_form| %>
     <div class="actions">
         <%= room_form.hidden_field :start_now, {:value => "1"} %>
-        <%= room_form.submit "Start" %>
+        <%= room_form.submit "Start Room", :class => "button" %>
     </div>
     <% end %>
     <%= link_to 'Edit', edit_room_path(@room) %> -
@@ -31,4 +31,5 @@
             <%= link_to 'Input Audio', participant.pb_input_recording if participant.contact != 'browser'%>
         <% end %>
     <% end %>
+    <hr />
 </div>
