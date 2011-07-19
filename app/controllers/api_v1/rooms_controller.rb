@@ -22,7 +22,7 @@ class ApiV1::RoomsController < ApiV1::APIController
     def show
         @room = Room.find(params[:id])
         @room.phonebrowser_service.update_status
-        api_respond @room, {:include => [:phonebrowser_service, :participants]}
+        api_respond @room, {:include => [:video_service, :phonebrowser_service, :participants]}
         #@participant = Participant.find(params[:id_participant])
     end
 
@@ -52,7 +52,7 @@ class ApiV1::RoomsController < ApiV1::APIController
         if params[:room][:start_now] and !params[:room][:start_now].nil? and params[:room][:start_now] == "1"
             @room.start
         end
-        api_respond @room, {:include => [:phonebrowser_service, :participants]}
+        api_respond @room, {:include => [:video_service, :phonebrowser_service, :participants]}
     end
     
     def update
@@ -66,7 +66,7 @@ class ApiV1::RoomsController < ApiV1::APIController
                 @room.start if !@room.nil?
             end
         end
-        api_respond @room, {:include => [:phonebrowser_service, :participants]}
+        api_respond @room, {:include => [:video_service, :phonebrowser_service, :participants]}
     end
     
     #def destroy
